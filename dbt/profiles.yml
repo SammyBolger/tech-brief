@@ -1,0 +1,7 @@
+tech_brief:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "{{ env_var('TECH_BRIEF_DB_PATH', 'data/tech_brief.duckdb') }}"
+      threads: 4

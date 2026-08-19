@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: fct_stories
+    description: One row per unique story url across all sources.
+    columns:
+      - name: url
+        tests: [not_null, unique]
+      - name: title
+        tests: [not_null]
+  - name: fct_stories_scored
+    description: fct_stories with source_weight, recency, engagement, and final_score.
+    columns:
+      - name: url
+        tests: [not_null, unique]
+      - name: final_score
+        tests: [not_null]
+  - name: fct_daily_digest
+    description: Top 5 stories per topic by final_score. Consumed by the LangGraph agent.
+    columns:
+      - name: topic
+        tests: [not_null]
+      - name: url
+        tests: [not_null]

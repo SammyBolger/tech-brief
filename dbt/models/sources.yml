@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: main
+    tables:
+      - name: raw_stories
+        columns:
+          - name: source
+            tests: [not_null]
+          - name: title
+            tests: [not_null]
+          - name: url

@@ -1,0 +1,43 @@
+name: daily digest
+
+on:
+  schedule:
+    # 11:55 UTC = 06:55 CT. GitHub Actions cron is best-effort so the
+    # actual send can drift 5 to 30 minutes.
+    - cron: "55 11 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -e .
+
+      - name: run pipeline
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          DIGEST_FROM_EMAIL: ${{ secrets.DIGEST_FROM_EMAIL }}
+          DIGEST_TO_EMAIL: ${{ secrets.DIGEST_TO_EMAIL }}
+        run: |
+          make ingest
+          make transform
+          make digest
+
+      - name: commit today's brief
+        run: |
+          git config user.name "tech-brief-bot"
+          git config user.email "actions@github.com"
+          git add data/briefs/
+          if ! git diff --cached --quiet; then
+            git commit -m "add brief for $(date -u +%Y-%m-%d)"
+            git push
+          fi
