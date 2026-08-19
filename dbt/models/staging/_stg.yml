@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: stg_hackernews
+    columns:
+      - name: source_id
+        tests: [not_null, unique]
+      - name: title
+        tests: [not_null]
+  - name: stg_rss
+    columns:
+      - name: source_id
+        tests: [not_null]
+      - name: title
+        tests: [not_null]
+  - name: stg_reddit
+    columns:
+      - name: title
+        tests: [not_null]
+  - name: stg_github_trending
+    columns:
+      - name: source_id
+        tests: [not_null, unique]
+      - name: title
+        tests: [not_null]
