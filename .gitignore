@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+env/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+
+# Env
+.env
+.env.local
+secrets/
+
+# DuckDB
+data/*.duckdb
+data/*.duckdb.wal
+
+# dbt
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
