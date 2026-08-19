@@ -6,7 +6,7 @@
 [![Daily Digest](https://img.shields.io/github/actions/workflow/status/SammyBolger/tech-brief/daily.yml?branch=main&label=daily%20digest)](https://github.com/SammyBolger/tech-brief/actions/workflows/daily.yml)
 [![License](https://img.shields.io/github/license/SammyBolger/tech-brief)](LICENSE)
 
-Every morning at 7am CT, a GitHub Actions cron pulls the last 24 hours of stories from HackerNews, Reddit, half a dozen tech RSS feeds, GitHub trending, and the ArXiv AI category. It runs them through a dbt medallion pipeline in DuckDB, then a LangGraph agent uses Claude Haiku to turn the ranked stories into a categorized digest and Resend delivers it to my inbox. See the [live archive on my portfolio](https://sammybolger.com/brief).
+Every morning at 7am CT, a GitHub Actions cron pulls the last 24 hours of stories from HackerNews, Reddit, half a dozen tech RSS feeds, GitHub trending, and the ArXiv AI category. It runs them through a dbt medallion pipeline in DuckDB, then a LangGraph agent uses Claude Haiku to turn the ranked stories into a categorized digest and Resend delivers it to my inbox. Each day's brief is archived in [`data/briefs/`](data/briefs/) as JSON.
 
 ---
 
